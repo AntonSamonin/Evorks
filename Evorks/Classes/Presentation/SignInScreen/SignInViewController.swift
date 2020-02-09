@@ -200,6 +200,19 @@ class SignInViewController: UIViewController {
             mainWindow?.rootViewController = SignUpViewController()
         }
         .disposed(by: disposeBag)
+        
+        signInButton.rx.tap.bind {
+            var mainWindow: UIWindow? {
+                if #available(iOS 13.0, *) {
+                    if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+                        return windowScene.windows.first
+                    }
+                }
+                return UIApplication.shared.keyWindow
+            }
+            mainWindow?.rootViewController = TabViewController()
+        }
+        .disposed(by: disposeBag)
     }
     
     private func whenKeyboard() {

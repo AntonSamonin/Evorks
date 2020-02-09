@@ -8,6 +8,6 @@
 
 import Foundation
 
-enum ApiError {
+enum ApiError: Error {
     case unauthorized, serverNotAvailable
 }

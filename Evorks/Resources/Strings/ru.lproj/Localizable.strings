@@ -5,3 +5,9 @@
   Created by Anton Samonin on 1/31/20.
   Copyright © 2020 AntonSamonin. All rights reserved.
 */
+"sign_in" = "Войти";
+"login" = "Логин";
+"password" = "Пароль";
+"sign_in_description" = "Сервис по предоставлению рабочей силы";
+"sign_up" = "Зарегистрироваться";
+"or" = "Или";

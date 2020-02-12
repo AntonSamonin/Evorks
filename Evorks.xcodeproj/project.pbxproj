@@ -46,6 +46,14 @@
 		77802EA423F08385004C3B3B /* OrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77802EA323F08385004C3B3B /* OrdersViewController.swift */; };
 		77802EA723F083B1004C3B3B /* CabinetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77802EA623F083B1004C3B3B /* CabinetViewController.swift */; };
 		77802EAA23F083C9004C3B3B /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77802EA923F083C9004C3B3B /* HelpViewController.swift */; };
+		77802EAC23F1734D004C3B3B /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77802EAB23F1734D004C3B3B /* MenuBar.swift */; };
+		77802EAE23F178E5004C3B3B /* MenuBarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77802EAD23F178E5004C3B3B /* MenuBarCell.swift */; };
+		77C72F5323F3371600E9BE7A /* NewOrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C72F5223F3371600E9BE7A /* NewOrdersViewController.swift */; };
+		77C72F5523F33BB500E9BE7A /* MyOrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C72F5423F33BB500E9BE7A /* MyOrdersViewController.swift */; };
+		77C72F5723F33BE300E9BE7A /* InWorkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C72F5623F33BE300E9BE7A /* InWorkViewController.swift */; };
+		77C72F5923F33BFD00E9BE7A /* DoneOrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C72F5823F33BFD00E9BE7A /* DoneOrdersViewController.swift */; };
+		77C72F5D23F3D9BA00E9BE7A /* OrderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C72F5C23F3D9BA00E9BE7A /* OrderViewCell.swift */; };
+		77C72F5F23F41B8700E9BE7A /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C72F5E23F41B8700E9BE7A /* Order.swift */; };
 		77F8F8CA23E42CE0001A1407 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F8F8C923E42CE0001A1407 /* AppDelegate.swift */; };
 		77F8F8CC23E42CE0001A1407 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F8F8CB23E42CE0001A1407 /* SceneDelegate.swift */; };
 		77F8F8D323E42CE5001A1407 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77F8F8D223E42CE5001A1407 /* Assets.xcassets */; };
@@ -104,6 +112,14 @@
 		77802EA323F08385004C3B3B /* OrdersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersViewController.swift; sourceTree = "<group>"; };
 		77802EA623F083B1004C3B3B /* CabinetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CabinetViewController.swift; sourceTree = "<group>"; };
 		77802EA923F083C9004C3B3B /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
+		77802EAB23F1734D004C3B3B /* MenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
+		77802EAD23F178E5004C3B3B /* MenuBarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarCell.swift; sourceTree = "<group>"; };
+		77C72F5223F3371600E9BE7A /* NewOrdersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewOrdersViewController.swift; sourceTree = "<group>"; };
+		77C72F5423F33BB500E9BE7A /* MyOrdersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOrdersViewController.swift; sourceTree = "<group>"; };
+		77C72F5623F33BE300E9BE7A /* InWorkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InWorkViewController.swift; sourceTree = "<group>"; };
+		77C72F5823F33BFD00E9BE7A /* DoneOrdersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoneOrdersViewController.swift; sourceTree = "<group>"; };
+		77C72F5C23F3D9BA00E9BE7A /* OrderViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewCell.swift; sourceTree = "<group>"; };
+		77C72F5E23F41B8700E9BE7A /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		77F8F8C623E42CE0001A1407 /* Evorks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Evorks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77F8F8C923E42CE0001A1407 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		77F8F8CB23E42CE0001A1407 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -233,7 +249,11 @@
 		77802EA223F0836E004C3B3B /* OrdersScreen */ = {
 			isa = PBXGroup;
 			children = (
+				77C72F5A23F3D96D00E9BE7A /* NewOrdersScreen */,
 				77802EA323F08385004C3B3B /* OrdersViewController.swift */,
+				77C72F5423F33BB500E9BE7A /* MyOrdersViewController.swift */,
+				77C72F5623F33BE300E9BE7A /* InWorkViewController.swift */,
+				77C72F5823F33BFD00E9BE7A /* DoneOrdersViewController.swift */,
 			);
 			path = OrdersScreen;
 			sourceTree = "<group>";
@@ -252,6 +272,23 @@
 				77802EA923F083C9004C3B3B /* HelpViewController.swift */,
 			);
 			path = HelpScreen;
+			sourceTree = "<group>";
+		};
+		77C72F5A23F3D96D00E9BE7A /* NewOrdersScreen */ = {
+			isa = PBXGroup;
+			children = (
+				77C72F5B23F3D98F00E9BE7A /* TableView */,
+				77C72F5223F3371600E9BE7A /* NewOrdersViewController.swift */,
+			);
+			path = NewOrdersScreen;
+			sourceTree = "<group>";
+		};
+		77C72F5B23F3D98F00E9BE7A /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				77C72F5C23F3D9BA00E9BE7A /* OrderViewCell.swift */,
+			);
+			path = TableView;
 			sourceTree = "<group>";
 		};
 		77F8F8BD23E42CE0001A1407 = {
@@ -351,6 +388,8 @@
 				777D99C723EF0E040098E5CB /* UniversalTextField.swift */,
 				77802E9323F04768004C3B3B /* PhoneTextField.swift */,
 				77802E9B23F07137004C3B3B /* PreloaderView.swift */,
+				77802EAB23F1734D004C3B3B /* MenuBar.swift */,
+				77802EAD23F178E5004C3B3B /* MenuBarCell.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -405,6 +444,7 @@
 			isa = PBXGroup;
 			children = (
 				77F8F8F023E4333E001A1407 /* Model.swift */,
+				77C72F5E23F41B8700E9BE7A /* Order.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -553,6 +593,7 @@
 				77802EA123F072AE004C3B3B /* TabItemView.swift in Sources */,
 				77802E9023F04404004C3B3B /* SignUpViewController.swift in Sources */,
 				77F8F8CA23E42CE0001A1407 /* AppDelegate.swift in Sources */,
+				77C72F5923F33BFD00E9BE7A /* DoneOrdersViewController.swift in Sources */,
 				77F8F90A23E43C6B001A1407 /* UIDeviceExtension.swift in Sources */,
 				77802E9223F0463D004C3B3B /* SingUpViewModel.swift in Sources */,
 				77F8F90823E43B47001A1407 /* DateExtension.swift in Sources */,
@@ -568,17 +609,24 @@
 				777D99C623EF0C990098E5CB /* Font.swift in Sources */,
 				77F8F8F923E435DF001A1407 /* AppStateProxy.swift in Sources */,
 				77F8F8F523E434B7001A1407 /* ApiRequestBody.swift in Sources */,
+				77C72F5323F3371600E9BE7A /* NewOrdersViewController.swift in Sources */,
+				77802EAC23F1734D004C3B3B /* MenuBar.swift in Sources */,
 				77802EAA23F083C9004C3B3B /* HelpViewController.swift in Sources */,
 				773AC35A23EF259700A0FF52 /* SplashViewController.swift in Sources */,
+				77C72F5D23F3D9BA00E9BE7A /* OrderViewCell.swift in Sources */,
+				77C72F5723F33BE300E9BE7A /* InWorkViewController.swift in Sources */,
 				77F8F8CC23E42CE0001A1407 /* SceneDelegate.swift in Sources */,
 				77802E9F23F071C7004C3B3B /* TabView.swift in Sources */,
 				777D99C223EF0A800098E5CB /* SignInViewController.swift in Sources */,
+				77C72F5523F33BB500E9BE7A /* MyOrdersViewController.swift in Sources */,
 				77802E9C23F07137004C3B3B /* PreloaderView.swift in Sources */,
 				77F8F8F723E43504001A1407 /* RxActivityIndicator.swift in Sources */,
+				77802EAE23F178E5004C3B3B /* MenuBarCell.swift in Sources */,
 				77F8F8FB23E43600001A1407 /* SessionService.swift in Sources */,
 				77802EA723F083B1004C3B3B /* CabinetViewController.swift in Sources */,
 				777D99C423EF0C2C0098E5CB /* TextAttributes.swift in Sources */,
 				77F8F8F323E4336C001A1407 /* ApiError.swift in Sources */,
+				77C72F5F23F41B8700E9BE7A /* Order.swift in Sources */,
 				77F8F90623E43AE6001A1407 /* StringExtension.swift in Sources */,
 				77F8F8F123E4333E001A1407 /* Model.swift in Sources */,
 			);

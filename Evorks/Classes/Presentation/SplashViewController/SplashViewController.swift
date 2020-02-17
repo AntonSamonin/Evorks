@@ -26,7 +26,7 @@ class SplashViewController: UIViewController {
             }
             return UIApplication.shared.keyWindow
         }
-        mainWindow?.rootViewController = SignInViewController()
+        mainWindow?.rootViewController = SignUpViewController()
     }
 
 }

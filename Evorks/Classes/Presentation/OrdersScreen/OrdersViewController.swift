@@ -60,7 +60,7 @@ final class OrdersViewController: UIViewController {
         menuBar.topAnchor.constraint(equalTo: view.topAnchor, constant: 75).isActive = true
         menuBar.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         menuBar.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        menuBar.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        menuBar.heightAnchor.constraint(equalToConstant: 80).isActive = true
         
         containerView.topAnchor.constraint(equalTo: menuBar.bottomAnchor, constant: 10).isActive = true
         containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true

@@ -9,5 +9,12 @@
 import Foundation.NSURL
 
 struct Order {
-    
+    let orderTitle: String
+    let address: String
+    let comment: String
+    let countHours: Int
+    let countPerson: Int
+    let phone: String
+    let serviceId: Int
+    let startWork: String
 }

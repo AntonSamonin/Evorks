@@ -67,6 +67,15 @@ class SignUpViewController: UIViewController {
         return button
     }()
     
+    private lazy var signUpPreloader: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.style = UIActivityIndicatorView.Style.large
+        activityIndicator.color = .white
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        return activityIndicator
+    }()
+    
     private let disposeBag = DisposeBag()
     private let viewModel = SignUpViewModel()
     private var titleLabelTopConstraint: NSLayoutConstraint!
@@ -90,6 +99,7 @@ class SignUpViewController: UIViewController {
         view.addSubview(phoneNumberTextField)
         view.addSubview(continueButton)
         view.addSubview(toSignInButton)
+        view.addSubview(signUpPreloader)
         
         titleLabelTopConstraint = titleLable.topAnchor.constraint(equalTo: view.topAnchor, constant: 170)
         titleLabelTopConstraint.isActive = true
@@ -114,6 +124,9 @@ class SignUpViewController: UIViewController {
         
         toSignInButton.topAnchor.constraint(equalTo: view.topAnchor, constant: SizeUtils.value(largeDevice: 60, smallDevice: 30)).isActive = true
         toSignInButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
+        signUpPreloader.centerYAnchor.constraint(equalTo: continueButton.centerYAnchor).isActive = true
+        signUpPreloader.centerXAnchor.constraint(equalTo: continueButton.centerXAnchor).isActive = true
     }
     
     private func bind() {
@@ -144,6 +157,41 @@ class SignUpViewController: UIViewController {
                 self?.continueButton.isEnabled = validationProblems.isEmpty
             })
             .disposed(by: disposeBag)
+        
+        continueButton.rx.tap
+            .bind(to: viewModel.signUp)
+            .disposed(by: disposeBag)
+        
+        viewModel.signUpComplete
+            .bind { [weak self] _ in
+                let alert = Alert.simple(title: "Регистрация успешно проведена.", message: "Дождитесь звонка оператора", cancelButtonTitle: "ok".localized) {
+                    var mainWindow: UIWindow? {
+                        if #available(iOS 13.0, *) {
+                            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+                                return windowScene.windows.first
+                            }
+                        }
+                        return UIApplication.shared.keyWindow
+                    }
+                    mainWindow?.rootViewController = SignInViewController()
+                }
+                self?.present(alert, animated: true)
+        }
+        .disposed(by: disposeBag)
+        
+        viewModel.signUpError
+            .bind { [weak self] error in
+                let alert = Alert.simple(message: error, cancelButtonTitle: "ok".localized)
+                self?.present(alert, animated: true)
+        }
+        .disposed(by: disposeBag)
+        
+        viewModel.signUpProcessing
+            .drive(onNext: { [weak self] isLoading in
+                self?.continueButton.isHidden = isLoading
+                isLoading ? self?.signUpPreloader.startAnimating() : self?.signUpPreloader.stopAnimating()
+            })
+            .disposed(by: disposeBag)
     }
     
     private func addActions() {
@@ -158,13 +206,13 @@ class SignUpViewController: UIViewController {
     }
     
     private func whenKeyboard() {
-    view.rx.keyboardHeight
-        .subscribe(onNext: { [weak self] keyboardHeight in
-            self?.titleLabelTopConstraint.constant = keyboardHeight > 0 ? 90 : 170
-            UIView.animate(withDuration: 0.4, animations: {
-                self?.view.layoutIfNeeded()
+        view.rx.keyboardHeight
+            .subscribe(onNext: { [weak self] keyboardHeight in
+                self?.titleLabelTopConstraint.constant = keyboardHeight > 0 ? 90 : 170
+                UIView.animate(withDuration: 0.4, animations: {
+                    self?.view.layoutIfNeeded()
+                })
             })
-        })
-        .disposed(by: disposeBag)
+            .disposed(by: disposeBag)
     }
 }

@@ -27,8 +27,8 @@ class RestAPITransport {
                     switch response.result {
                     case .success(let json):
                         single(.success(json))
-                    case .failure(_):
-                        single(.error((response.response?.statusCode ?? -1) == 401 ? ApiError.unauthorized : ApiError.serverNotAvailable))
+                    case .failure(let error):
+                        single(.error(ApiError(code: response.response?.statusCode ?? 0, error: error)))
                     }
                 })
             

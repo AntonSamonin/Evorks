@@ -45,6 +45,38 @@ class SignUpViewModel {
     }
     
     private func signUpAction() -> Driver<[ValidationProblem]> {
-        return Driver.never()
+        return signUp
+            .withLatestFrom(credentials)
+            .flatMapLatest { [signUpProcessing, signUpComplete, signUpError] phoneNumber -> Observable<Void> in
+                
+                return SessionService
+                    .signUp(phoneNumber: phoneNumber)
+                    .trackActivity(signUpProcessing)
+                    .do(onNext: { _ in
+                        signUpComplete.accept(Void())
+                    }, onError: { error in
+                        guard let apiError = error as? ApiError else {
+                            signUpError.accept("error_try_later".localized)
+                            return
+                        }
+                        
+                        if apiError.code == 0 {
+                            signUpError.accept("network_problem".localized)
+                        } else if apiError.code == 200 {
+                            signUpComplete.accept(Void())
+                        }  else if apiError.code == 401 {
+                            signUpError.accept("unauthorized".localized)
+                        } else if apiError.code == 403 {
+                            signUpError.accept("forbidden".localized)
+                        } else if apiError.code == 404 {
+                            signUpError.accept("not_found".localized)
+                        } else {
+                            signUpError.accept("error_try_later".localized)
+                        }
+                    })
+                    .catchError { _ in .never() }
+        }
+        .flatMap { _ -> Driver<[ValidationProblem]> in return .never() }
+        .asDriver(onErrorJustReturn: [])
     }
 }

@@ -4,7 +4,7 @@
 target 'Evorks' do
   pod 'RxSwift'
   pod 'RxCocoa'
-  pod 'Alamofire'
+  pod 'Alamofire', '~> 4.9.1'
   pod 'TLCustomMask'
   # Pods for Evorks
 

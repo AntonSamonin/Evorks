@@ -13,6 +13,9 @@
 		773AC35723EF248D00A0FF52 /* SizeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773AC35623EF248D00A0FF52 /* SizeUtils.swift */; };
 		773AC35A23EF259700A0FF52 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773AC35923EF259700A0FF52 /* SplashViewController.swift */; };
 		773AC36123F027FB00A0FF52 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 773AC36023F027FB00A0FF52 /* Localizable.strings */; };
+		777AFA8E2419236900F69BA0 /* SignUpRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777AFA8D2419236900F69BA0 /* SignUpRequest.swift */; };
+		777AFA902419255E00F69BA0 /* SignError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777AFA8F2419255E00F69BA0 /* SignError.swift */; };
+		777AFA9324192A2300F69BA0 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777AFA9224192A2300F69BA0 /* Alert.swift */; };
 		777D99C223EF0A800098E5CB /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777D99C123EF0A800098E5CB /* SignInViewController.swift */; };
 		777D99C423EF0C2C0098E5CB /* TextAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777D99C323EF0C2C0098E5CB /* TextAttributes.swift */; };
 		777D99C623EF0C990098E5CB /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777D99C523EF0C990098E5CB /* Font.swift */; };
@@ -80,6 +83,9 @@
 		773AC35623EF248D00A0FF52 /* SizeUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeUtils.swift; sourceTree = "<group>"; };
 		773AC35923EF259700A0FF52 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		773AC36023F027FB00A0FF52 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		777AFA8D2419236900F69BA0 /* SignUpRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRequest.swift; sourceTree = "<group>"; };
+		777AFA8F2419255E00F69BA0 /* SignError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignError.swift; sourceTree = "<group>"; };
+		777AFA9224192A2300F69BA0 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		777D99C123EF0A800098E5CB /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		777D99C323EF0C2C0098E5CB /* TextAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextAttributes.swift; sourceTree = "<group>"; };
 		777D99C523EF0C990098E5CB /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
@@ -396,6 +402,7 @@
 				77802E9B23F07137004C3B3B /* PreloaderView.swift */,
 				77802EAB23F1734D004C3B3B /* MenuBar.swift */,
 				77802EAD23F178E5004C3B3B /* MenuBarCell.swift */,
+				777AFA9224192A2300F69BA0 /* Alert.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -459,6 +466,7 @@
 			isa = PBXGroup;
 			children = (
 				77F8F8F223E4336C001A1407 /* ApiError.swift */,
+				777AFA8F2419255E00F69BA0 /* SignError.swift */,
 			);
 			path = Error;
 			sourceTree = "<group>";
@@ -467,6 +475,7 @@
 			isa = PBXGroup;
 			children = (
 				77F8F8F423E434B7001A1407 /* ApiRequestBody.swift */,
+				777AFA8D2419236900F69BA0 /* SignUpRequest.swift */,
 			);
 			path = RequestBody;
 			sourceTree = "<group>";
@@ -641,6 +650,7 @@
 				77F8F8CA23E42CE0001A1407 /* AppDelegate.swift in Sources */,
 				77C72F5923F33BFD00E9BE7A /* DoneOrdersViewController.swift in Sources */,
 				77F8F90A23E43C6B001A1407 /* UIDeviceExtension.swift in Sources */,
+				777AFA902419255E00F69BA0 /* SignError.swift in Sources */,
 				77802E9223F0463D004C3B3B /* SingUpViewModel.swift in Sources */,
 				77F8F90823E43B47001A1407 /* DateExtension.swift in Sources */,
 				77802EA423F08385004C3B3B /* OrdersViewController.swift in Sources */,
@@ -659,11 +669,13 @@
 				77C72F5323F3371600E9BE7A /* NewOrdersViewController.swift in Sources */,
 				77802EAC23F1734D004C3B3B /* MenuBar.swift in Sources */,
 				77802EAA23F083C9004C3B3B /* HelpViewController.swift in Sources */,
+				777AFA8E2419236900F69BA0 /* SignUpRequest.swift in Sources */,
 				773AC35A23EF259700A0FF52 /* SplashViewController.swift in Sources */,
 				77C72F5D23F3D9BA00E9BE7A /* OrderTableViewCell.swift in Sources */,
 				77C72F5723F33BE300E9BE7A /* InWorkViewController.swift in Sources */,
 				77F8F8CC23E42CE0001A1407 /* SceneDelegate.swift in Sources */,
 				77802E9F23F071C7004C3B3B /* TabView.swift in Sources */,
+				777AFA9324192A2300F69BA0 /* Alert.swift in Sources */,
 				777D99C223EF0A800098E5CB /* SignInViewController.swift in Sources */,
 				77C72F5523F33BB500E9BE7A /* MyOrdersViewController.swift in Sources */,
 				77802E9C23F07137004C3B3B /* PreloaderView.swift in Sources */,

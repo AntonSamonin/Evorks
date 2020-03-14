@@ -8,6 +8,9 @@
 
 import Foundation
 
-enum ApiError: Error {
-    case unauthorized, serverNotAvailable
+struct ApiError: Error {
+    let code: Int
+    let error: Error
+    var textCode: String?
+    var message: String?
 }

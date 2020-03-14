@@ -5,6 +5,16 @@
   Created by Anton Samonin on 2/9/20.
   Copyright © 2020 AntonSamonin. All rights reserved.
 */
+
+"ok" = "ОК";
+
+//errors
+"network_problem" = "Отсутствует интернет соединение.";
+"unauthorized" = "Не зарегистрирован. Попробуйте позже.";
+"forbidden" = "Запрет";
+"not_found" = "Not Found";
+"error_try_later" = "Ошибка. Поробуйте позже.";
+
 //sign_in_screen
 "sign_in" = "Войти";
 "login" = "Логин";

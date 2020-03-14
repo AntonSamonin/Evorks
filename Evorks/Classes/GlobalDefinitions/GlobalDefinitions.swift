@@ -10,4 +10,5 @@ import UIKit
 
 final class GlobalDefinitions {
     
+    static var domainUrl = "https://evorks.herokuapp.com"
 }

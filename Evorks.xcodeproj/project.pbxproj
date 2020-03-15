@@ -16,6 +16,7 @@
 		777AFA8E2419236900F69BA0 /* SignUpRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777AFA8D2419236900F69BA0 /* SignUpRequest.swift */; };
 		777AFA902419255E00F69BA0 /* SignError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777AFA8F2419255E00F69BA0 /* SignError.swift */; };
 		777AFA9324192A2300F69BA0 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777AFA9224192A2300F69BA0 /* Alert.swift */; };
+		777D8750241E669D0009F370 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 77F8F8D723E42CE5001A1407 /* Info.plist */; };
 		777D99C223EF0A800098E5CB /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777D99C123EF0A800098E5CB /* SignInViewController.swift */; };
 		777D99C423EF0C2C0098E5CB /* TextAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777D99C323EF0C2C0098E5CB /* TextAttributes.swift */; };
 		777D99C623EF0C990098E5CB /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777D99C523EF0C990098E5CB /* Font.swift */; };
@@ -598,6 +599,7 @@
 				77802E8723F02EF5004C3B3B /* Montserrat-ExtraBold.ttf in Resources */,
 				77802E8A23F02EF5004C3B3B /* Montserrat-Regular.ttf in Resources */,
 				77802E7B23F02EF5004C3B3B /* Montserrat-LightItalic.ttf in Resources */,
+				777D8750241E669D0009F370 /* Info.plist in Resources */,
 				77802E8023F02EF5004C3B3B /* Montserrat-ExtraLight.ttf in Resources */,
 				77802E7C23F02EF5004C3B3B /* Montserrat-Medium.ttf in Resources */,
 				77F8F8D623E42CE5001A1407 /* LaunchScreen.storyboard in Resources */,

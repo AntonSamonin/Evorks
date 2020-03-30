@@ -28,23 +28,21 @@ class SignInViewModel {
     private lazy var credentials = createCredentials()
     
     func observeValidateContent() -> Driver<[ValidationProblem]> {
-            let observe = Driver
-                .combineLatest(login.asDriver(onErrorJustReturn: ""),
-                               password.asDriver(onErrorJustReturn: "")) {
-                                login, password -> [ValidationProblem] in
-                                let isPasswordSmall = password.count < 1
-                                
-                                var result: [ValidationProblem] = []
-                                
-                                if isPasswordSmall { result.append(.passwordIsSmall) }
-                                
-                                return result
-                }
-            
-            
-            
-            return Driver.merge(observe,
-                                signInAction())
+        let observe = Driver
+            .combineLatest(login.asDriver(onErrorJustReturn: ""),
+                           password.asDriver(onErrorJustReturn: "")) {
+                            login, password -> [ValidationProblem] in
+                            let isPasswordSmall = password.count < 1
+                            
+                            var result: [ValidationProblem] = []
+                            
+                            if isPasswordSmall { result.append(.passwordIsSmall) }
+                            
+                            return result
+        }
+        
+        return Driver.merge(observe,
+                            signInAction())
     }
     
     private func createCredentials() -> Driver<(String, String)> {
@@ -54,6 +52,35 @@ class SignInViewModel {
     }
     
     private func signInAction() -> Driver<[ValidationProblem]> {
-        return Driver.never()
+        return signIn.withLatestFrom(credentials).flatMapLatest { [signInSuccess, signInProcessing, signInError] login,password -> Observable<Void> in
+            return SessionService
+                .signIn(username: login, password: password)
+                .trackActivity(signInProcessing)
+                .do(onNext: { _ in
+                    signInSuccess.accept(Void())
+                }, onError: { error in
+                    guard let apiError = error as? ApiError else {
+                        signInError.accept("error_try_later".localized)
+                        return
+                    }
+                    
+                    if apiError.code == 0 {
+                        signInError.accept("network_problem".localized)
+                    } else if apiError.code == 200 {
+                        signInSuccess.accept(Void())
+                    }  else if apiError.code == 401 {
+                        signInError.accept("unauthorized".localized)
+                    } else if apiError.code == 403 {
+                        signInError.accept("forbidden".localized)
+                    } else if apiError.code == 404 {
+                        signInError.accept("not_found".localized)
+                    } else {
+                        signInError.accept("error_try_later".localized)
+                    }
+                })
+                .catchError { _ in .never() }
+        }
+        .flatMap { _ -> Driver<[ValidationProblem]> in return .never() }
+        .asDriver(onErrorJustReturn: [])
     }
 }

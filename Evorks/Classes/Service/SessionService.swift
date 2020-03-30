@@ -9,43 +9,24 @@
 import RxSwift
 
 struct SessionMeta: Model {
-    let userId: Int
     let accessToken: String
     let accessTokenType: String
     
-    enum ContentKey: CodingKey {
-        case result
-    }
-    
-    enum Keys: CodingKey {
-        case data
-        case meta
-    }
-    
-    enum UserKeys: String, CodingKey {
-        case userId = "id"
-    }
-    
     enum MetaKeys: String, CodingKey {
-        case accessToken = "access_token"
-        case accessTokenType = "token_type"
+        case accessToken = "token"
+        case accessTokenType = "type"
     }
     
     init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: ContentKey.self)
-        let result = try container.nestedContainer(keyedBy: Keys.self, forKey: .result)
-        let data = try result.nestedContainer(keyedBy: UserKeys.self, forKey: .data)
-        let meta = try result.nestedContainer(keyedBy: MetaKeys.self, forKey: .meta)
+        let container = try decoder.container(keyedBy: MetaKeys.self)
         
-        userId = try data.decode(Int.self, forKey: .userId)
-        accessToken = try meta.decode(String.self, forKey: .accessToken)
-        accessTokenType = try meta.decode(String.self, forKey: .accessTokenType)
+        accessToken = try container.decode(String.self, forKey: .accessToken)
+        accessTokenType = try container.decode(String.self, forKey: .accessTokenType)
     }
 }
 
 class SessionService {
     
-    private static let userIdKey = "user_id_key"
     private static let accessTokenKey = "access_token_key"
     private static let accessTokenTypeKey = "access_token_type_key"
     
@@ -75,6 +56,24 @@ class SessionService {
 
                 return meta
             }
+            .map { _ -> Void in Void() }
+    }
+    
+    static func signIn(username: String, password: String) -> Single<Void> {
+        let request = SignInRequest(username: username, password: password)
+
+        return RestAPITransport()
+            .callServerApi(requestBody: request)
+            .map { SessionMeta.parseFromDictionary(any: $0) }
+            .map { sessionMeta -> SessionMeta in
+                guard let meta = sessionMeta else {
+                    throw SignError.unknown
+                }
+                return meta
+            }.do(onSuccess: { sessionMeta in
+                UserDefaults.standard.set(sessionMeta.accessToken, forKey: SessionService.accessTokenKey)
+                UserDefaults.standard.set(sessionMeta.accessTokenType, forKey: SessionService.accessTokenTypeKey)
+            })
             .map { _ -> Void in Void() }
     }
 }

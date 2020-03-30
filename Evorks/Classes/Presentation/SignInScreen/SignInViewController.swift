@@ -45,8 +45,8 @@ class SignInViewController: UIViewController {
     private lazy var passwordTextField: UniversalAuthTextField = {
         let password = UniversalAuthTextField()
         let attr = TextAttributes()
-        .font(Font.Montserrat.light(size: 16))
-        .textColor(UIColor.gray)
+            .font(Font.Montserrat.light(size: 16))
+            .textColor(UIColor.gray)
         password.headerLabel.text = "password".localized
         password.textField.isSecureTextEntry = true
         password.textField.attributedPlaceholder = "password".localized.attributed(with: attr)
@@ -86,8 +86,8 @@ class SignInViewController: UIViewController {
         let label = UILabel()
         let attr = TextAttributes()
             .font(Font.Montserrat.regular(size: 16))
-        .textColor(.white)
-        .textAlignment(.center)
+            .textColor(.white)
+            .textAlignment(.center)
         label.attributedText = "or".localized.attributed(with: attr)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -104,7 +104,7 @@ class SignInViewController: UIViewController {
     private var loginTopConstraint: NSLayoutConstraint!
     private let disposeBag = DisposeBag()
     private let viewModel = SignInViewModel()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
@@ -135,26 +135,26 @@ class SignInViewController: UIViewController {
         titleLablel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
         titleLablel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
         
-
+        
         loginTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
         loginTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
         loginTextField.heightAnchor.constraint(equalToConstant: 86).isActive = true
         loginTopConstraint = loginTextField.topAnchor.constraint(equalTo: titleLablel.bottomAnchor, constant: SizeUtils.value(largeDevice: 60, smallDevice: 60, verySmallDevice: 0))
         loginTopConstraint.isActive = true
-
+        
         passwordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
         passwordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
         passwordTextField.heightAnchor.constraint(equalToConstant: 86).isActive = true
         passwordTextField.topAnchor.constraint(equalTo: loginTextField.bottomAnchor, constant: 16).isActive = true
-
+        
         signInButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 42).isActive = true
         signInButton.heightAnchor.constraint(equalToConstant: 66).isActive = true
         signInButton.widthAnchor.constraint(equalToConstant: 257).isActive = true
         signInButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-
+        
         orLabel.topAnchor.constraint(equalTo: signInButton.bottomAnchor, constant: 17).isActive = true
         orLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-
+        
         signUpButton.topAnchor.constraint(equalTo: orLabel.bottomAnchor, constant: 17).isActive = true
         signUpButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
@@ -165,11 +165,11 @@ class SignInViewController: UIViewController {
     private func bind() {
         signInButton.rx.tap
             .bind(to: viewModel.signIn)
-        .disposed(by: disposeBag)
+            .disposed(by: disposeBag)
         
         signUpButton.rx.tap
             .bind(to: viewModel.signUp)
-        .disposed(by: disposeBag)
+            .disposed(by: disposeBag)
         
         loginTextField.textField.rx.text
             .map { $0 ?? "" }
@@ -183,34 +183,46 @@ class SignInViewController: UIViewController {
         
         viewModel.observeValidateContent()
             .drive(onNext: { [weak self] validationProblems in
-            self?.signInButton.isEnabled = self?.loginTextField.textField.text?.isEmpty ?? true ? false : validationProblems.isEmpty
+                self?.signInButton.isEnabled = self?.loginTextField.textField.text?.isEmpty ?? true ? false : validationProblems.isEmpty
             })
             .disposed(by: disposeBag)
         
         signUpButton.rx.tap
             .bind {
-            var mainWindow: UIWindow? {
-                if #available(iOS 13.0, *) {
-                    if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
-                        return windowScene.windows.first
+                var mainWindow: UIWindow? {
+                    if #available(iOS 13.0, *) {
+                        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+                            return windowScene.windows.first
+                        }
                     }
+                    return UIApplication.shared.keyWindow
                 }
-                return UIApplication.shared.keyWindow
-            }
-            mainWindow?.rootViewController = SignUpViewController()
+                mainWindow?.rootViewController = SignUpViewController()
         }
         .disposed(by: disposeBag)
         
-        signInButton.rx.tap.bind {
-            var mainWindow: UIWindow? {
-                if #available(iOS 13.0, *) {
-                    if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
-                        return windowScene.windows.first
+        signInButton.rx.tap
+            .bind(to: viewModel.signIn)
+        .disposed(by: disposeBag)
+        
+        viewModel.signInSuccess
+            .bind {
+                var mainWindow: UIWindow? {
+                    if #available(iOS 13.0, *) {
+                        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+                            return windowScene.windows.first
+                        }
                     }
+                    return UIApplication.shared.keyWindow
                 }
-                return UIApplication.shared.keyWindow
-            }
-            mainWindow?.rootViewController = TabViewController()
+                mainWindow?.rootViewController = TabViewController()
+        }
+        .disposed(by: disposeBag)
+        
+        viewModel.signInError
+            .bind { [weak self] error in
+                let alert = Alert.simple(message: error, cancelButtonTitle: "ok".localized)
+                self?.present(alert, animated: true)
         }
         .disposed(by: disposeBag)
     }
@@ -234,5 +246,5 @@ class SignInViewController: UIViewController {
             })
             .disposed(by: disposeBag)
     }
-
+    
 }
